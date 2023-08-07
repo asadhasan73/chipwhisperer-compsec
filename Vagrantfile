@@ -4,6 +4,8 @@
   config.vm.box = "debian/bullseye64"
   config.vm.network "forwarded_port", guest: 8888, host: 8888
   config.vm.provision "shell", path: "setup_debian.sh", env: {"REPO_URL" => ENV['REPO_URL'], "NOTEBOOK_PASS" => "jupyter"}
+  config.vm.provision "shell", path: "build.sh"
+  config.vm.provision "shell", path: "run.sh"
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--usb", "on"]
     vb.customize ["modifyvm", :id, "--usbxhci", "on"]
